@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'yaml'
+require 'zimdel'
+
+options = {}
+OptionParser.new do |opts|
+  opts.version = Zimdel::VERSION
+  opts.program_name = 'zimdel'
+  opts.banner = 'Usage: hwping [options]'
+  opts.on('-c', '--config-file config.yml', 'Specify which configuration file you want to use instead of the default config.yml') do |v|
+    options[:config] = v
+  end
+end.parse!
+
+file = options.fetch(:config, 'config.yml')
+config = YAML.load_file(file)
+
+loop do
+  puts "Logging in with: #{config}"
+  Zimdel.new(config['username'], config['password'], config['message'])
+  puts "Messages sent"
+  sleep config['sleep']
+  puts "Waking up!"
+end
