@@ -1,8 +1,6 @@
 # Zimdel
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/zimdel`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Zimdel is a simple auto-reply bot for GitHub, it is triggered by mentioning.
 
 ## Installation
 
@@ -22,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To start the bot, you will need a configuration file. All the available configuration options are specified in the `config_sample.yml`.
+
+```ruby
+zimdel -c config.yml
+```
 
 ## Development
 
