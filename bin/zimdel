@@ -18,9 +18,6 @@ file = options.fetch(:config, 'config.yml')
 config = YAML.load_file(file)
 
 loop do
-  puts "Logging in with: #{config}"
   Zimdel.new(config['username'], config['password'], config['message'])
-  puts "Messages sent"
   sleep config['sleep']
-  puts "Waking up!"
 end
