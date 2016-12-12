@@ -7,6 +7,7 @@ module Zimdel
       @client ||= Octokit::Client.new(login: username, password: password)
 
       @client.notifications.each do |notification|
+        next unless notification[:reason] == 'mention'
         @client.add_comment(notification[:repository][:full_name], notification[:subject][:url][/[0-9]+$/], message)
       end
 
