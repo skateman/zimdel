@@ -9,6 +9,7 @@ module Zimdel
       @client.notifications.each do |notification|
         next unless notification[:reason] == 'mention'
         @client.add_comment(notification[:repository][:full_name], notification[:subject][:url][/[0-9]+$/], message)
+        @client.update_thread_subscription(notification[:id], :ignored => true)
       end
 
       @client.mark_notifications_as_read
