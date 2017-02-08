@@ -16,7 +16,7 @@ end.parse!
 
 loop do
   file = options.fetch(:config, 'config.yml')
-  config = YAML.load_file(file).deep_symbolize_keys
+  config = YAML.load_file(file)
   config['github'].each do |line|
     Zimdel.new(line['username'], line['password'], line['message'])
   end
