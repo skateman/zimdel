@@ -20,5 +20,5 @@ loop do
   config['github'].each do |line|
     Zimdel.new(line['username'], line['password'], line['message'])
   end
-  sleep config['sleep']
+  sleep config.fetch('sleep', 30)
 end
