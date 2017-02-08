@@ -14,10 +14,11 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-file = options.fetch(:config, 'config.yml')
-config = YAML.load_file(file)
-
 loop do
-  Zimdel.new(config['username'], config['password'], config['message'])
+  file = options.fetch(:config, 'config.yml')
+  config = YAML.load_file(file).deep_symbolize_keys
+  config['github'].each do |line|
+    Zimdel.new(line['username'], line['password'], line['message'])
+  end
   sleep config['sleep']
 end
